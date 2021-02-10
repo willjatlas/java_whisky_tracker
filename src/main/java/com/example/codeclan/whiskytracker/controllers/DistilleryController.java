@@ -1,6 +1,7 @@
 package com.example.codeclan.whiskytracker.controllers;
 
 import com.example.codeclan.whiskytracker.models.Distillery;
+import com.example.codeclan.whiskytracker.models.Whisky;
 import com.example.codeclan.whiskytracker.repositories.DistilleryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,13 @@ public class DistilleryController {
     public ResponseEntity<Distillery> createDistillery(@PathVariable Distillery distillery){
         distilleryRepository.save(distillery);
         return new ResponseEntity<>(distillery, HttpStatus.CREATED);
+    }
+
+    // Specific for extension only.
+    @GetMapping("/distilleries/12yr-whisky")
+    public ResponseEntity<List<Distillery>> get12YrWhiskies(){
+        return new ResponseEntity<>(distilleryRepository.findByWhiskiesAge(12),
+                                    HttpStatus.OK);
     }
 
 }

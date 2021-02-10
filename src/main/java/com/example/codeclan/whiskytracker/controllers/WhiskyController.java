@@ -34,7 +34,8 @@ public class WhiskyController {
         }
         //Finding whiskies by distillery region.
         if(region != null){
-            return new ResponseEntity<>(whiskyRepository.findWhiskiesByDistilleryRegion(region), HttpStatus.OK);
+            return new ResponseEntity<>(whiskyRepository.findWhiskiesByDistilleryRegion(region),
+                                        HttpStatus.OK);
         }
         //Standard index return.
         return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
