@@ -27,7 +27,7 @@ class WhiskytrackerApplicationTests {
 		Distillery dist = new Distillery("Test Distillery", "Test Region");
 		distilleryRepository.save(dist);
 
-		Whisky whisky = new Whisky("Test Whisky", 2021, 0 , dist);
+		Whisky whisky = new Whisky("Test Whisky", 0, 2021, dist);
 		whiskyRepository.save(whisky);
 
 	}
