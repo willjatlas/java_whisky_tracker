@@ -1,7 +1,8 @@
 package com.example.codeclan.whiskytracker.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +10,18 @@ import java.util.List;
 @Table(name="distilleries")
 public class Distillery {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
 
+    @Column
     private String region;
 
+    @OneToMany(mappedBy = "distillery")
+    @JsonIgnoreProperties("distillery")
     private List<Whisky> whiskies;
 
     public Distillery(String name, String region) {

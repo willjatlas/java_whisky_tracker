@@ -2,6 +2,8 @@ package com.example.codeclan.whiskytracker.components;
 
 import com.example.codeclan.whiskytracker.models.Distillery;
 import com.example.codeclan.whiskytracker.models.Whisky;
+import com.example.codeclan.whiskytracker.repositories.DistilleryRepository;
+import com.example.codeclan.whiskytracker.repositories.WhiskyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -90,4 +92,5 @@ public class DataLoader implements ApplicationRunner {
         Whisky whisky22 = new Whisky("Carmaferg" , 18, 2018, distillery13);
         whiskyRepository.save(whisky22);
     }
+
 }
