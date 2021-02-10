@@ -1,5 +1,6 @@
 package com.example.codeclan.whiskytracker.components;
 
+import com.example.codeclan.whiskytracker.models.Distillery;
 import com.example.codeclan.whiskytracker.models.Whisky;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
