@@ -2,6 +2,7 @@ package com.example.codeclan.whiskytracker.controllers;
 
 import com.example.codeclan.whiskytracker.models.Whisky;
 import com.example.codeclan.whiskytracker.repositories.WhiskyRepository;
+import jdk.jfr.Frequency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +19,24 @@ public class WhiskyController {
 
     @GetMapping("/whiskies")
     public ResponseEntity<List<Whisky>> getWhiskyIndex(
-            @RequestParam(name="year", required = false) Integer year,
-            @RequestParam(name = "distillery", required = false) String distillery
+            @RequestParam(name = "year", required = false) Integer year,
+            @RequestParam(name = "distillery", required = false) String distillery,
+            @RequestParam(name = "region", required = false) String region
     ){
+        //Finding whiskies by year and distillery name.
         if (year != null && distillery != null){
             return new ResponseEntity<>(whiskyRepository.findWhiskiesByAgeAndDistilleryName(year, distillery),
                                          HttpStatus.OK);
         }
+        //Finding whiskies by year only.
         if( year != null){
             return new ResponseEntity<>(whiskyRepository.findByYear(year), HttpStatus.OK);
         }
+        //Finding whiskies by distillery region.
+        if(region != null){
+            return new ResponseEntity<>(whiskyRepository.findWhiskiesByDistilleryRegion(region), HttpStatus.OK);
+        }
+        //Standard index return.
         return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
     }
 
